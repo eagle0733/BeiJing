@@ -375,5 +375,184 @@
     </p>
   </footer>
 
+  <script>
+    // 倒數計時
+    const tripDate = new Date('2026-05-16T13:00:00');
+    const countdownEl = document.getElementById('countdown');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = tripDate - now;
+
+      if (diff <= 0) {
+        countdownEl.innerHTML = '北京旅行開始中 ✈';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+      countdownEl.innerHTML = `${days} 天 ${hours} 小時後出發`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // 預算功能
+    let total = 0;
+
+    function addExpense() {
+      const input = document.getElementById('expenseInput');
+      const value = Number(input.value);
+
+      if (!value) return;
+
+      total += value;
+      document.getElementById('budgetTotal').innerHTML = `¥ ${total}`;
+
+      const item = document.createElement('div');
+      item.className = 'tip-item';
+      item.innerHTML = `新增支出：¥ ${value}`;
+
+      document.getElementById('expenseList').prepend(item);
+
+      input.value = '';
+    }
+
+    // 打卡功能
+    function checkIn(button) {
+      button.innerHTML = '✓ 已完成';
+      button.style.background = '#2e7d32';
+    }
+  </script>
+
+  <section class="section">
+
+    <div class="day-card">
+      <div class="day-header day4">
+        <small>旅行功能</small>
+        <h2>PWA 旅行工具</h2>
+        <p>讓旅途中真的能使用的功能整合。</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="time">倒數</div>
+          <div class="place" id="countdown">載入中...</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">導航</div>
+          <div class="place">
+            <a href="https://ditu.amap.com/" target="_blank">
+              開啟高德地圖導航
+            </a>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">地鐵</div>
+          <div class="place">
+            <a href="https://map.bjsubway.com/" target="_blank">
+              北京地鐵路線圖
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tips-section">
+
+      <div class="tips-card">
+        <h3>旅行預算紀錄</h3>
+
+        <div class="tip-item">
+          目前總花費：<strong id="budgetTotal">¥ 0</strong>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-bottom:20px;">
+          <input
+            id="expenseInput"
+            type="number"
+            placeholder="輸入花費"
+            style="flex:1; padding:14px; border-radius:16px; border:1px solid #ddd;"
+          />
+
+          <button
+            onclick="addExpense()"
+            style="padding:14px 22px; border:none; border-radius:16px; background:black; color:white; cursor:pointer;"
+          >
+            新增
+          </button>
+        </div>
+
+        <div id="expenseList"></div>
+      </div>
+
+      <div class="tips-card dark">
+        <h3>旅行打卡功能</h3>
+
+        <div class="tip-item">
+          故宮博物院
+          <br><br>
+          <button onclick="checkIn(this)" style="padding:10px 16px; border:none; border-radius:12px; cursor:pointer;">
+            打卡完成
+          </button>
+        </div>
+
+        <div class="tip-item">
+          慕田峪長城
+          <br><br>
+          <button onclick="checkIn(this)" style="padding:10px 16px; border:none; border-radius:12px; cursor:pointer;">
+            打卡完成
+          </button>
+        </div>
+
+        <div class="tip-item">
+          什剎海夜景
+          <br><br>
+          <button onclick="checkIn(this)" style="padding:10px 16px; border:none; border-radius:12px; cursor:pointer;">
+            打卡完成
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="day-card">
+      <div class="day-header day5">
+        <small>未來升級</small>
+        <h2>小紅書風旅行 App</h2>
+        <p>下一步可直接升級成真正手機旅行 App。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">照片</div>
+          <div class="place">景點美照卡片化展示</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">天氣</div>
+          <div class="place">即時北京天氣 API 串接</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">PWA</div>
+          <div class="place">手機加入主畫面變真正 App</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">地圖</div>
+          <div class="place">Google Maps / 高德地圖一鍵導航</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
 </body>
 </html>
