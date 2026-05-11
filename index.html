@@ -403,20 +403,45 @@
 
     function addExpense() {
       const input = document.getElementById('expenseInput');
+      const name = document.getElementById('expenseName').value || '未命名支出';
+      const category = document.getElementById('expenseCategory').value;
       const value = Number(input.value);
 
       if (!value) return;
 
       total += value;
+
       document.getElementById('budgetTotal').innerHTML = `¥ ${total}`;
+      document.getElementById('todayTotal').innerHTML = `¥ ${total}`;
 
       const item = document.createElement('div');
       item.className = 'tip-item';
-      item.innerHTML = `新增支出：¥ ${value}`;
+      item.style.background = 'white';
+      item.style.border = '1px solid #eee';
+      item.style.marginBottom = '14px';
+
+      const currentTime = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      item.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div>
+            <div style="font-weight:700; font-size:18px;">${name}</div>
+            <div style="opacity:0.6; font-size:14px;">${category} ・ ${currentTime}</div>
+          </div>
+
+          <div style="font-size:24px; font-weight:800;">
+            ¥ ${value}
+          </div>
+        </div>
+      `;
 
       document.getElementById('expenseList').prepend(item);
 
       input.value = '';
+      document.getElementById('expenseName').value = '';
     }
 
     // 打卡功能
@@ -466,26 +491,67 @@
     <div class="tips-section">
 
       <div class="tips-card">
-        <h3>旅行預算紀錄</h3>
+        <h3>旅行預算管理</h3>
 
-        <div class="tip-item">
-          目前總花費：<strong id="budgetTotal">¥ 0</strong>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-bottom:28px;">
+          <div class="tip-item">
+            <div style="font-size:14px; opacity:0.7; margin-bottom:8px;">今日花費</div>
+            <div style="font-size:30px; font-weight:800;" id="todayTotal">¥ 0</div>
+          </div>
+
+          <div class="tip-item">
+            <div style="font-size:14px; opacity:0.7; margin-bottom:8px;">旅行總花費</div>
+            <div style="font-size:30px; font-weight:800;" id="budgetTotal">¥ 0</div>
+          </div>
+
+          <div class="tip-item">
+            <div style="font-size:14px; opacity:0.7; margin-bottom:8px;">每日預算</div>
+            <div style="font-size:30px; font-weight:800;">¥ 1200</div>
+          </div>
         </div>
 
-        <div style="display:flex; gap:10px; margin-bottom:20px;">
-          <input
-            id="expenseInput"
-            type="number"
-            placeholder="輸入花費"
-            style="flex:1; padding:14px; border-radius:16px; border:1px solid #ddd;"
-          />
+        <div style="background:#f8f8f8; border-radius:24px; padding:24px; margin-bottom:24px;">
 
-          <button
-            onclick="addExpense()"
-            style="padding:14px 22px; border:none; border-radius:16px; background:black; color:white; cursor:pointer;"
-          >
-            新增
-          </button>
+          <div style="font-size:18px; font-weight:700; margin-bottom:16px;">
+            新增旅行支出
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+            <input
+              id="expenseName"
+              type="text"
+              placeholder="餐廳 / 交通 / 購物"
+              style="padding:14px; border-radius:16px; border:1px solid #ddd;"
+            />
+
+            <select id="expenseCategory" style="padding:14px; border-radius:16px; border:1px solid #ddd;">
+              <option>餐飲</option>
+              <option>交通</option>
+              <option>門票</option>
+              <option>購物</option>
+              <option>住宿</option>
+            </select>
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <input
+              id="expenseInput"
+              type="number"
+              placeholder="輸入金額"
+              style="flex:1; padding:14px; border-radius:16px; border:1px solid #ddd;"
+            />
+
+            <button
+              onclick="addExpense()"
+              style="padding:14px 22px; border:none; border-radius:16px; background:black; color:white; cursor:pointer; font-weight:700;"
+            >
+              新增紀錄
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px; font-size:18px; font-weight:700;">
+          今日花費紀錄
         </div>
 
         <div id="expenseList"></div>
@@ -537,7 +603,27 @@
 
         <div class="timeline-item">
           <div class="time">天氣</div>
-          <div class="place">即時北京天氣 API 串接</div>
+          <div class="place">即時北京天氣 API 串接（顯示溫度 / 降雨 / 空氣品質）</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">AI</div>
+          <div class="place">AI 行程提醒（出發時間 / 塞車 / 景點建議）</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">共享</div>
+          <div class="place">同行者共享行程與同步記帳</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">相簿</div>
+          <div class="place">旅遊照片牆與旅行回憶時間軸</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">分析</div>
+          <div class="place">花費分析圖表與每日支出統計</div>
         </div>
 
         <div class="timeline-item">
