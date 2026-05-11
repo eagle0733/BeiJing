@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>北京五天四夜旅行手冊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #f5f3ef;
+      color: #222;
+      line-height: 1.7;
+    }
+
+    .hero {
+      min-height: 90vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1974&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 80px 10%;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .subtitle {
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      font-weight: 900;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .info-card small {
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      width: min(1200px, 92%);
+      margin: 80px auto;
+    }
+
+    .day-card {
+      background: white;
+      border-radius: 36px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .day-header {
+      padding: 40px;
+      color: white;
+    }
+
+    .day1 { background: linear-gradient(135deg, #e8b07a, #c76f3d); }
+    .day2 { background: linear-gradient(135deg, #5f5f5f, #232323); }
+    .day3 { background: linear-gradient(135deg, #78b7ff, #3268c9); }
+    .day4 { background: linear-gradient(135deg, #75cba0, #2d7f5b); }
+    .day5 { background: linear-gradient(135deg, #f2a7b6, #d65f78); }
+
+    .day-header h2 {
+      font-size: 42px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .day-header p {
+      opacity: 0.85;
+      font-size: 18px;
+    }
+
+    .timeline {
+      padding: 40px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .time {
+      min-width: 100px;
+      background: #111;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 18px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .place {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .tips-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 80px;
+    }
+
+    .tips-card {
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .tips-card.dark {
+      background: #121212;
+      color: white;
+    }
+
+    .tips-card h3 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .tip-item {
+      background: #f3f3f3;
+      padding: 18px 22px;
+      border-radius: 18px;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .dark .tip-item {
+      background: rgba(255,255,255,0.08);
+    }
+
+    footer {
+      background: #101010;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-top: 100px;
+    }
+
+    footer h2 {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.7);
+      font-size: 20px;
+    }
+
+    @media(max-width:768px) {
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .time {
+        min-width: auto;
+      }
+
+      footer h2 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="subtitle">BEIJING TRAVEL GUIDE</div>
+
+      <h1>
+        北京<br>
+        五天四夜旅行手冊
+      </h1>
+
+      <p>
+        將胡同、故宮、長城與北京夜色，整理成一份真正適合旅途中使用的旅行小書。
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <small>旅行日期</small>
+          <div>05 / 16 — 05 / 20</div>
+        </div>
+
+        <div class="info-card">
+          <small>住宿</small>
+          <div>新世界中心同派酒店</div>
+        </div>
+
+        <div class="info-card">
+          <small>旅行風格</small>
+          <div>城市慢旅 × 攝影感</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+
+    <div class="day-card">
+      <div class="day-header day1">
+        <small>05 / 16</small>
+        <h2>DAY 1｜抵達北京・前門夜遊</h2>
+        <p>第一天以輕鬆適應北京節奏為主。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">13:00</div>
+          <div class="place">桃園機場起飛</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">16:15</div>
+          <div class="place">抵達北京</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">19:30</div>
+          <div class="place">前門大街 / 大柵欄</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">21:00</div>
+          <div class="place">素虎（前門店）晚餐</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header day2">
+        <small>05 / 17</small>
+        <h2>DAY 2｜故宮・雍和宮・什剎海</h2>
+        <p>北京文化古蹟集中日。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">08:30</div>
+          <div class="place">故宮博物院</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">13:00</div>
+          <div class="place">雍和宮</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">15:30</div>
+          <div class="place">景山公園</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">18:00</div>
+          <div class="place">什剎海夜景</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header day3">
+        <small>05 / 18</small>
+        <h2>DAY 3｜慕田峪長城・鳥巢夜景</h2>
+        <p>長城與北京夜景重點日。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">08:00</div>
+          <div class="place">長城巴士出發</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">10:00</div>
+          <div class="place">慕田峪長城</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">17:30</div>
+          <div class="place">鳥巢＋水立方</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">19:30</div>
+          <div class="place">海底撈晚餐</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-section">
+
+      <div class="tips-card">
+        <h3>北京交通 Tips</h3>
+
+        <div class="tip-item">北京地鐵比計程車更穩定</div>
+        <div class="tip-item">天安門周邊安檢非常嚴格</div>
+        <div class="tip-item">尖峰時間容易塞車</div>
+        <div class="tip-item">故宮與長城步行量很大</div>
+      </div>
+
+      <div class="tips-card dark">
+        <h3>推薦 App</h3>
+
+        <div class="tip-item">高德地圖｜北京導航最準</div>
+        <div class="tip-item">支付寶｜日常支付必備</div>
+        <div class="tip-item">北京地鐵 App｜查路線方便</div>
+        <div class="tip-item">微信支付｜部分店家更方便</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    <h2>Enjoy Beijing ✈</h2>
+
+    <p>
+      將每一天的移動、光線與城市節奏，
+      都留在這趟北京旅行裡。
+    </p>
+  </footer>
+
+</body>
+</html>
